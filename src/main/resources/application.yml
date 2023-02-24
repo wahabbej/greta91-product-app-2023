@@ -1,0 +1,22 @@
+server:
+  port: 7070
+spring:
+  datasource:
+    password: root
+    url: jdbc:mysql://localhost:8889/product-app-2023
+    username: root
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+#   désactive la validation hibernate lors de la persistence
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+#  security:
+#    user:
+#      name: admin
+#      password: admin

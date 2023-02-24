@@ -3,6 +3,7 @@ package fr.greta91.productapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.greta91.productapp.entity.Product;
@@ -12,6 +13,7 @@ import fr.greta91.productapp.repository.ProductRepository;
 public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductRepository repo;
+	
 	@Override
 	public List<Product> getAll() {
 		return repo.findAll();

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<meta charset="UTF-8">
+<title th:text="${'Index'}"></title>
+</head>
+<body>
+	<h1 th:text="${'portail de gestion de produits'}"></h1>
+	<span sec:authentication="name"></span >
+	<ul>
+		<li sec:authorize="isAuthenticated()">
+			<a th:href="@{/logout}">Se déconnecter</a>
+		</li>
+		<li sec:authorize="!isAuthenticated()">
+			<a th:href="@{/login}">Se connecter</a>
+		</li>
+	</ul>
+	
+	<div sec:authorize="${hasRole('ADMIN')}">
+		<ul>
+			<li>
+				<a th:href="@{/admin/user/add}">Ajouter un utilisateur</a>
+			</li>
+		</ul>
+	</div>
+	<div sec:authorize="${hasRole('CLIENT')}">
+		Zone Client
+	</div>
+	
+</body>
+</html>

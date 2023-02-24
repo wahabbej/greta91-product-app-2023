@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.greta91.productapp.entity.Product;
 import fr.greta91.productapp.repository.ProductRepository;
 import fr.greta91.productapp.service.ProductService;
+
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/products")
@@ -58,8 +60,9 @@ public class ProductController {
 	@RequestMapping(value = "", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Product add(@RequestBody Product product) {//JSON -> java
+	public ResponseEntity<Product> add(@RequestBody Product product) {//JSON -> java
 		product = service.save(product);
-		return product;
+		
+		return ResponseEntity.created(null).body(product);
 	}
 }

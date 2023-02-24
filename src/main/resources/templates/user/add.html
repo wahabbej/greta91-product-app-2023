@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head th:insert="~{ fragments/template :: header }"></head>
+
+<body>
+	<h1 th:text="${titrePage}">Ajouter un utilisateur :</h1>
+	
+	<!-- formulaire -->
+	<p th:if="${error != null}" th:text="${error}">erreur</p>
+	<form action="#" th:action="@{/admin/user/add}" 
+						th:object="${user}" 
+						method="post">
+		<input type="text" th:field="*{nom}" th:errorclass="errorField">
+		<p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">errors</p>
+		<input type="text" th:field="*{prenom}" th:errorclass="errorField">
+		<p th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}">errors</p>
+		
+		<input type="text" th:field="*{username}" th:errorclass="errorField">
+		<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">errors</p>
+	
+		<input type="password" th:field="*{password}" th:errorclass="errorField">
+		<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">errors</p>
+		
+		<select th:field="*{roles}" multiple="multiple">
+			<option 
+					th:each="role : ${roles}" 
+					th:text="${role.libelle}"
+					th:value="${role.id}">
+					Role
+			</option>
+		</select>
+		
+		<input type="submit" value="Ajouter">
+	</form>
+	<footer th:insert="~{ fragments/template :: footer }"></footer>
+</body>
+</html>
