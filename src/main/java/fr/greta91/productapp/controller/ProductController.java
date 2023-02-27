@@ -22,7 +22,7 @@ import fr.greta91.productapp.service.ProductService;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController {
 	@Autowired
 	ProductService service;
