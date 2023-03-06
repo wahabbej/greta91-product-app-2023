@@ -12,7 +12,7 @@ import fr.greta91.productapp.entity.Role;
 import fr.greta91.productapp.entity.User;
 import fr.greta91.productapp.repository.UserRepository;
 
-//@Configuration
+@Configuration
 public class DatabaseInitializer implements CommandLineRunner {
 	@Autowired
 	UserRepository repo;

@@ -98,8 +98,9 @@ public class WebSecurityConfig {
 					.mvcMatchers(HttpMethod.GET, "/api/public/**").permitAll()
 					.mvcMatchers(HttpMethod.POST, "/api/auth/login").permitAll()		
 					.mvcMatchers(HttpMethod.POST, "/api/auth/register").permitAll()	
-					.mvcMatchers("/api/products/**").hasRole("ADMIN")
-					.mvcMatchers("/api/**").authenticated()
+					.mvcMatchers("/api/admin/**").hasRole("ADMIN")
+					.mvcMatchers("/api/client/**").hasRole("CLIENT")
+					.mvcMatchers("/api/**").permitAll()
 			);
 		// On désactive la protection contre les CSRF.
 		// Dans l'état actuel du logiciel, elle est inutile

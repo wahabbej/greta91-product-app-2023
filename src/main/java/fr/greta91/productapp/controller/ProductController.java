@@ -22,12 +22,12 @@ import fr.greta91.productapp.service.ProductService;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api")
 public class ProductController {
 	@Autowired
 	ProductService service;
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public List<Product> getAll(){
 		List<Product> products = service.getAll();
 //		List<Product> products = new ArrayList<Product>();
@@ -39,7 +39,7 @@ public class ProductController {
 	
 	//supprimer un produit
 //	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)// /products/1
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/admin/products/{id}")
 	public Map<String, Boolean> remove(@PathVariable(name = "id") int idProduct) {
 		Map<String, Boolean> res=new HashMap<String, Boolean>();
 		try {
@@ -57,7 +57,7 @@ public class ProductController {
 	 * @param product à persister
 	 * @return produit créé
 	 */
-	@RequestMapping(value = "", 
+	@RequestMapping(value = "/admin/products", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Product> add(@RequestBody Product product) {//JSON -> java
